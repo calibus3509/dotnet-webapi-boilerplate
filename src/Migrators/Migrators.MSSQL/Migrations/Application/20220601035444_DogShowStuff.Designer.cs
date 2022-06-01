@@ -4,6 +4,7 @@ using FSH.WebApi.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Migrators.MSSQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220601035444_DogShowStuff")]
+    partial class DogShowStuff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,21 +53,6 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasIndex("TraitsId");
 
                     b.ToTable("DogBreedDogTrait", "Dsc");
-                });
-
-            modelBuilder.Entity("DogDogShowClassCategory", b =>
-                {
-                    b.Property<Guid>("DogShowClassCategorysId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DogsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("DogShowClassCategorysId", "DogsId");
-
-                    b.HasIndex("DogsId");
-
-                    b.ToTable("DogDogShowClassCategory", "Dsc");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.Catalog.Brand", b =>
@@ -166,106 +153,6 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.ToTable("Products", "Catalog");
 
                     b.HasAnnotation("Finbuckle:MultiTenant", true);
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.Common.CivicAddress", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AddressLine1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AddressLine2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Building")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CountryRegion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FloorLevel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("LastModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StateProvince")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Address", "Dsc");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.Common.Person", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("LastModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("People", "Dsc");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.Dogs.Dog", b =>
@@ -476,146 +363,6 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasKey("Id");
 
                     b.ToTable("DogTraits", "Dsc");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShow", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double?>("Distance")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double?>("EntryFee")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("LastModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("DogShows", "Dsc");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShowClass", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BreedId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DogShowId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("JudgeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("LastModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RingNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BreedId");
-
-                    b.HasIndex("DogShowId");
-
-                    b.HasIndex("JudgeId");
-
-                    b.ToTable("DogShowClasses", "Dsc");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShowClassCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DeletedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("DogShowClassId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("LastModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DogShowClassId");
-
-                    b.ToTable("DogShowClassCategories", "Dsc");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Infrastructure.Auditing.Trail", b =>
@@ -977,21 +724,6 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DogDogShowClassCategory", b =>
-                {
-                    b.HasOne("FSH.WebApi.Domain.DogShow.DogShowClassCategory", null)
-                        .WithMany()
-                        .HasForeignKey("DogShowClassCategorysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FSH.WebApi.Domain.Dogs.Dog", null)
-                        .WithMany()
-                        .HasForeignKey("DogsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FSH.WebApi.Domain.Catalog.Product", b =>
                 {
                     b.HasOne("FSH.WebApi.Domain.Catalog.Brand", "Brand")
@@ -1001,15 +733,6 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired();
 
                     b.Navigation("Brand");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.Common.Person", b =>
-                {
-                    b.HasOne("FSH.WebApi.Domain.Common.CivicAddress", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.Dogs.Dog", b =>
@@ -1034,41 +757,6 @@ namespace Migrators.MSSQL.Migrations.Application
                         .HasForeignKey("DogGroupId");
 
                     b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShow", b =>
-                {
-                    b.HasOne("FSH.WebApi.Domain.Common.CivicAddress", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShowClass", b =>
-                {
-                    b.HasOne("FSH.WebApi.Domain.Dogs.DogBreed", "Breed")
-                        .WithMany()
-                        .HasForeignKey("BreedId");
-
-                    b.HasOne("FSH.WebApi.Domain.DogShow.DogShow", null)
-                        .WithMany("Classes")
-                        .HasForeignKey("DogShowId");
-
-                    b.HasOne("FSH.WebApi.Domain.Common.Person", "Judge")
-                        .WithMany()
-                        .HasForeignKey("JudgeId");
-
-                    b.Navigation("Breed");
-
-                    b.Navigation("Judge");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShowClassCategory", b =>
-                {
-                    b.HasOne("FSH.WebApi.Domain.DogShow.DogShowClass", null)
-                        .WithMany("Categories")
-                        .HasForeignKey("DogShowClassId");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Infrastructure.Identity.ApplicationRoleClaim", b =>
@@ -1135,16 +823,6 @@ namespace Migrators.MSSQL.Migrations.Application
             modelBuilder.Entity("FSH.WebApi.Domain.Dogs.DogGroup", b =>
                 {
                     b.Navigation("DogBreeds");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShow", b =>
-                {
-                    b.Navigation("Classes");
-                });
-
-            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShowClass", b =>
-                {
-                    b.Navigation("Categories");
                 });
 #pragma warning restore 612, 618
         }

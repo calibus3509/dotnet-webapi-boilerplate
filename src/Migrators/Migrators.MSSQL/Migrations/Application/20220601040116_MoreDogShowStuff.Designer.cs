@@ -4,6 +4,7 @@ using FSH.WebApi.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Migrators.MSSQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220601040116_MoreDogShowStuff")]
+    partial class MoreDogShowStuff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,21 +53,6 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasIndex("TraitsId");
 
                     b.ToTable("DogBreedDogTrait", "Dsc");
-                });
-
-            modelBuilder.Entity("DogDogShowClassCategory", b =>
-                {
-                    b.Property<Guid>("DogShowClassCategorysId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DogsId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("DogShowClassCategorysId", "DogsId");
-
-                    b.HasIndex("DogsId");
-
-                    b.ToTable("DogDogShowClassCategory", "Dsc");
                 });
 
             modelBuilder.Entity("FSH.WebApi.Domain.Catalog.Brand", b =>
@@ -298,6 +285,9 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<Guid?>("DogColorId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("DogShowClassCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
@@ -325,6 +315,8 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasIndex("DogBreedId");
 
                     b.HasIndex("DogColorId");
+
+                    b.HasIndex("DogShowClassCategoryId");
 
                     b.ToTable("Dogs", "Dsc");
                 });
@@ -977,21 +969,6 @@ namespace Migrators.MSSQL.Migrations.Application
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DogDogShowClassCategory", b =>
-                {
-                    b.HasOne("FSH.WebApi.Domain.DogShow.DogShowClassCategory", null)
-                        .WithMany()
-                        .HasForeignKey("DogShowClassCategorysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FSH.WebApi.Domain.Dogs.Dog", null)
-                        .WithMany()
-                        .HasForeignKey("DogsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FSH.WebApi.Domain.Catalog.Product", b =>
                 {
                     b.HasOne("FSH.WebApi.Domain.Catalog.Brand", "Brand")
@@ -1021,6 +998,10 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.HasOne("FSH.WebApi.Domain.Dogs.DogColor", "Color")
                         .WithMany("Dogs")
                         .HasForeignKey("DogColorId");
+
+                    b.HasOne("FSH.WebApi.Domain.DogShow.DogShowClassCategory", null)
+                        .WithMany("Dogs")
+                        .HasForeignKey("DogShowClassCategoryId");
 
                     b.Navigation("Breed");
 
@@ -1145,6 +1126,11 @@ namespace Migrators.MSSQL.Migrations.Application
             modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShowClass", b =>
                 {
                     b.Navigation("Categories");
+                });
+
+            modelBuilder.Entity("FSH.WebApi.Domain.DogShow.DogShowClassCategory", b =>
+                {
+                    b.Navigation("Dogs");
                 });
 #pragma warning restore 612, 618
         }

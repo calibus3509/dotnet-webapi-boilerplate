@@ -1,4 +1,6 @@
-﻿namespace FSH.WebApi.Domain.Dog;
+﻿
+
+namespace FSH.WebApi.Domain.Dogs;
 public class Dog : AuditableEntity, IAggregateRoot
 {
     public string Name { get; set; } = string.Empty;
@@ -12,6 +14,7 @@ public class Dog : AuditableEntity, IAggregateRoot
     public string? ImagePath { get; set; }
     public Guid? DogColorId { get; set; }
     public DogColor? Color { get; set; }
+    public List<DogShowClassCategory>? DogShowClassCategorys { get; set; }
 
     public Dog()
     {

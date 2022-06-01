@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Domain.Dog;
+﻿namespace FSH.WebApi.Domain.Dogs;
 public class DogGroup : AuditableEntity, IAggregateRoot
 {
     public string Name { get; set; } = string.Empty;

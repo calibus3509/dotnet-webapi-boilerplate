@@ -2,7 +2,9 @@ using Finbuckle.MultiTenant;
 using FSH.WebApi.Application.Common.Events;
 using FSH.WebApi.Application.Common.Interfaces;
 using FSH.WebApi.Domain.Catalog;
-using FSH.WebApi.Domain.Dog;
+using FSH.WebApi.Domain.Common;
+using FSH.WebApi.Domain.Dogs;
+using FSH.WebApi.Domain.DogShow;
 using FSH.WebApi.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -23,6 +25,11 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<DogColor> DogColors => Set<DogColor>();
     public DbSet<DogGroup> DogGroups => Set<DogGroup>();
     public DbSet<DogTrait> DogTraits => Set<DogTrait>();
+    public DbSet<DogShow> DogShows => Set<DogShow>();
+    public DbSet<DogShowClass> DogShowClasses => Set<DogShowClass>();
+    public DbSet<DogShowClassCategory> DogShowClassCategories => Set<DogShowClassCategory>();
+    public DbSet<CivicAddress> Address => Set<CivicAddress>();
+    public DbSet<Person> People => Set<Person>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
