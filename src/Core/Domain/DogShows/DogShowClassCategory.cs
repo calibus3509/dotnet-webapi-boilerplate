@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Domain.DogShow;
+﻿namespace FSH.WebApi.Domain.DogShows;
 
 public class DogShowClassCategory : AuditableEntity, IAggregateRoot
 {

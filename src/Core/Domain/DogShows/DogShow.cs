@@ -1,4 +1,4 @@
-﻿namespace FSH.WebApi.Domain.DogShow;
+﻿namespace FSH.WebApi.Domain.DogShows;
 public class DogShow : AuditableEntity, IAggregateRoot
 {
     public string? Name { get; set; } = string.Empty;
@@ -9,6 +9,21 @@ public class DogShow : AuditableEntity, IAggregateRoot
     public double? EntryFee { get; set; }
     public double? Distance { get; set; }
     public List<DogShowClass>? Classes { get; set; }
+
+    public DogShow()
+    {
+
+    }
+
+    public DogShow(string? name, DateTime startDate, DateTime? endDate, Guid? addressId, double? entryFee, double? distance)
+    {
+        Name = name;
+        StartDate = startDate;
+        EndDate = endDate;
+        AddressId = addressId;
+        EntryFee = entryFee;
+        Distance = distance;
+    }
 
     public DogShow Update(
     string? name,

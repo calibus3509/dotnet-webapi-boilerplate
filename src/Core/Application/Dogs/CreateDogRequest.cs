@@ -37,6 +37,3 @@ public class CreateDogRequestHandler : IRequestHandler<CreateDogRequest, Guid>
         return dog.Id;
     }
 }
-
-
-

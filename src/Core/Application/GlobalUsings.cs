@@ -8,6 +8,7 @@ global using FSH.WebApi.Application.Common.Models;
 global using FSH.WebApi.Application.Common.Persistence;
 global using FSH.WebApi.Application.Common.Specification;
 global using FSH.WebApi.Application.Common.Validation;
+global using FSH.WebApi.Application.Dogs;
 global using FSH.WebApi.Domain.Catalog;
 global using FSH.WebApi.Domain.Dogs;
 global using FSH.WebApi.Domain.Common;

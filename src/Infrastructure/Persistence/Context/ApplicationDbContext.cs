@@ -4,7 +4,7 @@ using FSH.WebApi.Application.Common.Interfaces;
 using FSH.WebApi.Domain.Catalog;
 using FSH.WebApi.Domain.Common;
 using FSH.WebApi.Domain.Dogs;
-using FSH.WebApi.Domain.DogShow;
+using FSH.WebApi.Domain.DogShows;
 using FSH.WebApi.Infrastructure.Persistence.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
